@@ -14,6 +14,7 @@ initialize()
 
 let server = express();
 
+server.set('view engine', 'ejs');
 server.use(logger('dev'));
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
