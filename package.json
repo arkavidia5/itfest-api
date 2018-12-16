@@ -1,0 +1,31 @@
+{
+  "name": "itfest-api",
+  "version": "1.0.0",
+  "description": "API used for Arkavidia IT Festival",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "cp .env.example .env",
+    "start:development": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkavidia5/itfest-api.git"
+  },
+  "author": "arkavidia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arkavidia5/itfest-api/issues"
+  },
+  "homepage": "https://github.com/arkavidia5/itfest-api#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.10",
+    "morgan": "^1.9.1",
+    "pg": "^7.6.1"
+  }
+}
