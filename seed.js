@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-let database = require('./database');
+const database = require('./database');
 
 async function seedAdmin(db) {
     let Admin = require('./models').Admin;
@@ -13,16 +13,27 @@ async function seedAdmin(db) {
     };
 }
 
-database.initialize().then((db) => {
-    seedAdmin(db)
-        .then((res) => {
-            console.log(res);
-            process.exit(0);
-        })
-        .catch((err) => {
-            console.log(err);
-            process.exit(1);
-        });
-});
+async function indexTenant(db) {
+    return await db.collection('tenant').createIndex({"name": 1}, {unique: true});
+}
 
+async function indexUser(db) {
+    return await db.collection('user').createIndex({"id": 1}, {unique: true});
+}
+
+async function indexItem(db) {
+    return await db.collection('item').createIndex({"name": 1, "tenant": 1}, {unique: true});
+}
+
+try {
+    database.initialize().then(db => {
+        // seedAdmin(db).then(r => console.log(r));
+        indexTenant(db).then((r) => console.log(r));
+        indexItem(db).then(r => console.log(r));
+        indexUser(db).then(r => console.log(r));
+    });
+} catch (e) {
+    console.log(e.message);
+    process.exit(1);
+}
 
