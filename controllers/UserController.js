@@ -12,8 +12,7 @@ let createUser = async function(req, res, next) {
 };
 
 let login = async function (req, res, next) {
-    let body = req.body;
-    let id = body.id;
+    let {id} = req.body;
     let user = await User.Repository.fetchOne({id});
     if (user) {
         let token = jwt.sign({'id': user.id, 'type': 'user'}, process.ENV.JWT_KEY);
@@ -25,7 +24,7 @@ let login = async function (req, res, next) {
 };
 
 let detail = async function (req, res, next) {
-    let id = req.params.id;
+    let id =  parseInt(req.params.id);
     let user = await User.Repository.fetchOne({id});
     if (user) {
         res.json(user.getDetail());

@@ -12,15 +12,20 @@ let createTenant = async function(req, res, next) {
 };
 
 let login = async function (req, res, next) {
-    let {username, password} = body.id;
-    let tenant = await Tenant.Repository.fetchOne({username});
-    if (tenant && tenant.verifyPassword(password)) {
-        let token = jwt.sign({'id': tenant.id, 'type': 'tenant'}, process.ENV.JWT_KEY);
-        res.setHeader('authorization', `Bearer ${token}`);
-        res.json('OK');
-    } else {
-        res.statusCode(401).json('not authorized');
+    let {name, password} = req.body;
+    try {
+        let tenant = await Tenant.Repository.fetchOne({name});
+        if (tenant && await tenant.verifyPassword(password)) {
+            let token = jwt.sign({'id': tenant.id, 'type': 'tenant'}, process.env.JWT_KEY);
+            res.setHeader('authorization', `Bearer ${token}`);
+            res.json('OK');
+        } else {
+            res.status(401).json('not authorized');
+        }
+    } catch (e) {
+        next(e);
     }
+
 };
 
 let detail = async function (req, res, next) {

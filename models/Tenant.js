@@ -35,8 +35,7 @@ class Tenant {
     }
 
     static async hashPassword(password) {
-        let salt = await bcrypt.genSalt(10);
-        return await bcrypt.hash(password, salt);
+        return await bcrypt.hash(password, 10);
     }
 
     async verifyPassword(password) {
@@ -49,7 +48,10 @@ class TenantRepository {
 
     static async create(name, detail_name, password, point) {
         let hashedPassword = await Tenant.hashPassword(password);
-        let tenant = new Tenant(name, detail_name, hashedPassword, point);
+        let tenant = new Tenant(name, detail_name, point, hashedPassword);
+        let docs = await db.collection('tenant').find({name}).toArray();
+        if (docs.length > 0)
+            throw new AppError(400, `${tenant} already created`);
         try {
             let result = await db.collection('tenant').insertOne({name: tenant.name, detail_name: tenant.detail_name, password: tenant.password, point: tenant.point});
             tenant.setID(result.insertId);
@@ -59,10 +61,10 @@ class TenantRepository {
         return tenant;
     }
 
-    static async fetchOne(name) {
-        let docs = await db.collection('tenant').find({name}).toArray();
+    static async fetchOne(condition) {
+        let docs = await db.collection('tenant').find(condition).toArray();
         if (docs.length === 0) return null;
-        return new Tenant(docs[0].name, docs[0].point, docs[0]._id);
+        return new Tenant(docs[0].name, docs[0].detail_name, docs[0].point, docs[0].password, docs[0]._id);
     }
 
 }

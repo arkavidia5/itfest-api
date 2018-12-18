@@ -1,8 +1,11 @@
-const Item = require('../models').Item;
+const {Item, Tenant} = require('../models');
+const AppError = require('../AppError');
 
 let createItem = async function (req, res, next) {
     try {
         let {name, price, tenant, stock} = req.body;
+        if (await Tenant.Repository.fetchOne({name: tenant}) === null)
+            throw new AppError(400, 'tenant not found');
         let item = await Item.Repository.create(name, price, tenant, stock);
         res.json(item.getDetail());
     } catch (e) {

@@ -15,8 +15,7 @@ class Admin {
     }
 
     static async hashPassword(password) {
-        let salt = await bcrypt.genSalt(10);
-        return await bcrypt.hash(password, salt);
+        return await bcrypt.hash(password, 10);
     }
 
     async verifyPassword(password) {
@@ -42,8 +41,8 @@ class AdminRepository {
         return admin;
     }
 
-    static async fetchOne(username) {
-        let docs = await db.collection('admin').find({username: username}).limit(1).toArray();
+    static async fetchOne(condition) {
+        let docs = await db.collection('admin').find(condition).limit(1).toArray();
         if (docs.length === 0) return null;
         return new Admin(docs[0].username, docs[0].password, docs[0]._id);
     }

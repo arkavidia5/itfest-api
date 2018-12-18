@@ -45,7 +45,7 @@ class UserRepository {
         let users = [];
         let usersDetail = [];
         for (let i = 0; i < count; i++) {
-            let id = Math.floor(100000 + Math.random() * 900000);
+            let id = Math.floor(Math.random() * 9000000000) + 1000000000;
             let user = new User(id, 0);
             users.push(user);
             usersDetail.push(user.getDetail());
@@ -58,8 +58,8 @@ class UserRepository {
         return true;
     }
 
-    static async fetchOne(id) {
-        let docs = await db.collection('user').find({id}).toArray();
+    static async fetchOne(condition) {
+        let docs = await db.collection('user').find(condition).toArray();
         if (docs.length === 0) return null;
         return new User(docs[0].id, docs[0].point);
     }
