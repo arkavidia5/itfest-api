@@ -25,9 +25,20 @@ async function indexItem(db) {
     return await db.collection('item').createIndex({"name": 1, "tenant": 1}, {unique: true});
 }
 
+async function createDocument(db) {
+    await db.createCollection('admin');
+    await db.createCollection('user');
+    await db.createCollection('tenant');
+    await db.createCollection('item');
+    await db.createCollection('point_transaction');
+    await db.createCollection('item_transaction');
+    return true;
+}
+
 try {
     database.initialize().then(db => {
-        // seedAdmin(db).then(r => console.log(r));
+        createDocument(db).then(r => console.log(r));
+        seedAdmin(db).then(r => console.log(r));
         indexTenant(db).then((r) => console.log(r));
         indexItem(db).then(r => console.log(r));
         indexUser(db).then(r => console.log(r));

@@ -17,8 +17,12 @@ class Item {
     }
 
     buyItem(total) {
-        if (this.stock - total < 0) return 0;
-        else return this.price * total;
+        if (this.stock - total < 0) {
+            return 0;
+        } else {
+            this.stock -= total;
+            return this.price * total;
+        }
     }
 
     getDetail() {
@@ -58,6 +62,12 @@ class ItemRepository {
             items.push(new Item(doc.name, doc.price, doc.tenant, doc.stock, doc.max_stock, doc._id));
         }
         return items;
+    }
+
+    static async fetchOne(conditions) {
+        let docs = await db.collection('item').find(conditions).toArray();
+        if (docs.length === 0) return null;
+        return new Item(docs[0].name, docs[0].price, docs[0].tenant, docs[0].stock, docs[0].max_stock, docs[0]._id);
     }
 
     static async fetchAll() {

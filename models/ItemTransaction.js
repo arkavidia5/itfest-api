@@ -1,5 +1,6 @@
 const database = require('../database');
 const db = database.getDB();
+const mongo = require('mongodb');
 const AppError = require('../AppError');
 
 class ItemTransaction {
@@ -45,7 +46,9 @@ class ItemTransactionRepository {
             await db.collection('user')
                 .updateOne({id: user.id}, {$set: {point: user.point}}, opts);
             await db.collection('item')
-                .updateOne({id: item.id}, {$set: {stock: item.stock}}, opts);
+                .updateOne({_id: new mongo.ObjectID(item.id)}, {$set: {stock: item.stock}}, opts);
+            await session.commitTransaction();
+            session.endSession();
         } catch (e) {
             await session.abortTransaction();
             session.endSession();

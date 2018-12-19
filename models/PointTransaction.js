@@ -33,7 +33,7 @@ class PointTransactionRepository {
         const session = database.startSession();
         session.startTransaction();
         const opts = {session, returnOriginal: false};
-        let pointTransaction = new PointTransaction(tenant.name, user.id, point);
+        let pointTransaction = new PointTransaction(tenant.detail_name, user.id, point);
         try {
             let result = await db.collection('point_transaction')
                 .insertOne(pointTransaction.getDetail(), opts);

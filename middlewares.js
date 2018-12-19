@@ -52,8 +52,8 @@ const userMiddleware = async (req, res, next) => {
 };
 
 const jsonMiddleware = async (req, res, next) => {
-    if (req.headers['content-type'].indexOf('application/json') !== 0)
-        return res.statusCode(400).json('Content-type must be application/json');
+    if (!req.headers['content-type'] || req.headers['content-type'].indexOf('application/json') !== 0)
+        return res.status(400).json('Content-type must be application/json');
     next();
 };
 

@@ -14,13 +14,13 @@ let createItem = async function (req, res, next) {
 };
 
 let getAllItem = async function (req, res, next) {
-    let items = Item.Repository.fetchAll();
+    let items = await Item.Repository.fetchAll();
     return res.json(items);
 };
 
 let getItemByTenant = async function (req, res, next) {
     let tenant = req.query.name;
-    let items = Item.Repository.fetch({tenant: `/${tenant}/`});
+    let items = await Item.Repository.fetch({tenant: `/${tenant}/`});
     return res.json(items);
 };
 
