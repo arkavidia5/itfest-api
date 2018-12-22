@@ -15,7 +15,7 @@ let givePoint = async function (req, res, next) {
             throw new AppError(400, 'tenant\'s point not enough');
         user.addPoint(point);
         let pt = await PointTransaction.Repository.create(tenant, user, point);
-        res.json(pt.getDetail());
+        res.status(201).json(pt.getDetail());
     } catch (e) {
         next(e);
     }
@@ -34,7 +34,7 @@ let redeemItem = async function (req, res, next) {
         if (!user.reducePoint(totalPrice))
             throw new AppError(400, `user ${user.id} doesn't have enough point`);
         let it = await ItemTransaction.Repository.create(item, user, quantity, totalPrice);
-        res.json(it.getDetail());
+        res.status(201).json(it.getDetail());
     } catch (e) {
         next(e);
     }

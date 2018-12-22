@@ -6,5 +6,10 @@ route.use('/admin', require('./AdminRoute'));
 route.use('/tenant', require('./TenantRoute'));
 route.use('/item', require('./ItemRoute'));
 route.use("/transaction", require('./TransactionRoute'));
+route.get("/docs", async function (req, res) {
+    let info = require("../docs");
+    res.json(info);
+});
+
 
 module.exports = route;
