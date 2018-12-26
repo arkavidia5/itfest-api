@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/login', jsonMiddleware, controller.login);
 router.post('/', jsonMiddleware, adminMiddleware, controller.createUser);
-router.get('/:id', controller.detail);
 router.get('/all', controller.fetchAllUser);
+router.get('/:id', controller.detail);
 
 module.exports = router;
