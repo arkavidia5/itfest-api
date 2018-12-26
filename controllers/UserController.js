@@ -33,4 +33,8 @@ let detail = async function (req, res, next) {
     }
 };
 
-module.exports = {login, detail, createUser};
+let fetchAllUser = async function (req, res, next) {
+    res.json(await User.Repository.fetchAll());
+};
+
+module.exports = {login, detail, createUser, fetchAllUser};

@@ -35,6 +35,14 @@
       }
     },
     {
+      "uri": "/user/all",
+      "method": "GET",
+      "response": {
+        "message": "[{id, point}]",
+        "status_code": 200
+      }
+    },
+    {
       "uri": "/tenant",
       "method": "POST",
       "header": {
@@ -61,7 +69,7 @@
       }
     },
     {
-      "uri": "/tenant/:id",
+      "uri": "/tenant/:name",
       "method": "GET",
       "response": {
         "message": "{name, detail_name, point}",

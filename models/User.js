@@ -64,6 +64,16 @@ class UserRepository {
         return new User(docs[0].id, docs[0].point);
     }
 
+    static async fetchAll() {
+        let docs = await db.collection('user').find().toArray();
+        if (docs.length === 0) return [];
+        let users = [];
+        for (let doc of docs) {
+            users.push(new User(doc.id, doc.point));
+        }
+        return users;
+    }
+
 }
 
 module.exports = {

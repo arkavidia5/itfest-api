@@ -6,6 +6,6 @@ let router = express.Router();
 
 router.post("/", jsonMiddleware, adminMiddleware, TenantController.createTenant);
 router.post("/login", jsonMiddleware, TenantController.login);
-router.get("/:id", TenantController.detail);
+router.get("/:name", TenantController.detail);
 
 module.exports = router;
