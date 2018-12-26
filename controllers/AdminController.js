@@ -6,7 +6,8 @@ let login = async function (req, res, next) {
     try {
         let admin = await Admin.Repository.fetchOne({username});
         if (admin && await admin.verifyPassword(password)) {
-            let token = jwt.sign({'id': admin.id, 'username': admin.username, 'type': 'admin'}, process.env.JWT_KEY);
+            let token = jwt.sign({'id': admin.id, 'username': admin.username, 'type': 'admin'},
+                process.env.JWT_KEY, {expiresIn: process.env.EXPIRES_IN});
             res.setHeader('authorization', `Bearer ${token}`);
             res.json('OK');
         } else {

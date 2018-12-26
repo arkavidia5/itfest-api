@@ -6,7 +6,11 @@ const checkAuthHeader = function(req) {
         return false;
     let auth = req.headers['authorization'];
     let token = auth.split(" ")[1];
-    return jwt.verify(token, process.env.JWT_KEY);
+    try {
+        return jwt.verify(token, process.env.JWT_KEY);
+    } catch (e) {
+        return false;
+    }
 };
 
 const adminMiddleware = async function(req, res, next) {
