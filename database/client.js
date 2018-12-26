@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 // Connection URL
 const url = process.env.DB_URL;
 // Database name
-const dbName = process.env.DB_NAME;
+const dbName = process.env.NODE_ENV === 'prod' ? process.env.DB_NAME : process.env.DB_TEST_NAME;
 // Client
 const client = new MongoClient(url, {useNewUrlParser: true});
 
@@ -18,6 +18,7 @@ async function initialize() {
 function getDB() {
     return db ? db : null;
 }
+
 
 function startSession() {
     return client.startSession();

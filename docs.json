@@ -1,13 +1,26 @@
 {
   "routes": [
     {
+      "uri": "/admin/login",
+      "method": "POST",
+      "header": {
+        "content-type": "application/json"
+      },
+      "body": {"username": "string", "password": "string"},
+      "response": {
+        "message": "OK",
+        "header": "Bearer <User JWT>",
+        "status_code": 200
+      }
+    },
+    {
       "uri": "/user",
       "method": "POST",
       "header": {
         "authorization": "Bearer <Admin JWT>",
         "content-type": "application/json"
       },
-      "body": [{"count": "integer"}],
+      "body": {"count": "integer"},
       "response": {
         "message": "OK",
         "status_code": 201
@@ -19,7 +32,7 @@
       "header": {
         "content-type": "application/json"
       },
-      "body": [{"id": "integer"}],
+      "body": {"id": "integer"},
       "response": {
         "message": "OK",
         "header": "Bearer <User JWT>",
@@ -49,7 +62,7 @@
         "authorization": "Bearer <Admin JWT>",
         "content-type": "application/json"
       },
-      "body": [{"name": "string", "detail_name": "string", "password": "string", "point": "integer"}],
+      "body": {"name": "string", "detail_name": "string", "password": "string", "point": "integer"},
       "response": {
         "message": "OK",
         "status_code": 201
@@ -61,7 +74,7 @@
       "header": {
         "content-type": "application/json"
       },
-      "body": [{"name": "string", "password": "string"}],
+      "body": {"name": "string", "password": "string"},
       "response": {
         "message": "OK",
         "header": "Bearer <Tenant JWT>",
@@ -83,7 +96,7 @@
         "authorization": "Bearer <Admin JWT>",
         "content-type": "application/json"
       },
-      "body": [{"name": "string", "price": "integer", "tenant": "string", "stock": "integer"}],
+      "body": {"name": "string", "price": "integer", "tenant": "string", "stock": "integer"},
       "response": {
         "message": "OK",
         "status_code": 201
@@ -104,7 +117,7 @@
         "authorization": "Bearer <Tenant JWT>",
         "content-type": "application/json"
       },
-      "body": [{"tenant_name": "string", "user_id": "string", "point": "integer"}],
+      "body": {"tenant_name": "string", "user_id": "string", "point": "integer"},
       "response": {
         "message": "{type, tenant, user_id, user_id, point, created_at}",
         "status_code": 201
@@ -117,7 +130,7 @@
         "authorization": "Bearer <Admin JWT>",
         "content-type": "application/json"
       },
-      "body": [{"item_id": "string", "user_id": "string", "quantity": "integer"}],
+      "body": {"item_id": "string", "user_id": "string", "quantity": "integer"},
       "response": {
         "message": "{type, item, tenant, user_id, user_id, quantity, total_price, created_at}",
         "status_code": 201

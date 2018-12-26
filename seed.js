@@ -37,6 +37,7 @@ async function createDocument(db) {
 
 try {
     database.initialize().then(db => {
+        let dbTest = database.get
         createDocument(db).then(r => console.log(r));
         seedAdmin(db).then(r => console.log(r));
         indexTenant(db).then((r) => console.log(r));

@@ -1,7 +1,5 @@
-const {initialize, getDB, startSession} = require('./client');
+const {initialize, getDB, startSession, getDBTest} = require('./client');
 
 module.exports = {
-    'initialize': initialize,
-    'getDB': getDB,
-    'startSession': startSession
+    initialize, getDB, startSession, getDBTest
 };

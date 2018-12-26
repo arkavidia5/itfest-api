@@ -2,7 +2,6 @@ const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 
-
 const routes = require('./routes');
 const AppError = require('./AppError');
 
@@ -13,7 +12,7 @@ server.use(logger('dev'));
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 server.use(cookieParser());
-server.use(routes);
+server.use(process.env.NODE_ENV === 'prod' ? "" : "/test", routes);
 server.use(async function (err, req, res, next) {
     if (err instanceof AppError) {
         res.status(err.statusCode).json(err.message);
