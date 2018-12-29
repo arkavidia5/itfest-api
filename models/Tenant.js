@@ -51,7 +51,7 @@ class TenantRepository {
         let tenant = new Tenant(name, detail_name, point, hashedPassword);
         let docs = await db.collection('tenant').find({name}).toArray();
         if (docs.length > 0)
-            throw new AppError(400, `${tenant} already created`);
+            throw new AppError(400, `${tenant.name} already created`);
         try {
             let result = await db.collection('tenant').insertOne({name: tenant.name, detail_name: tenant.detail_name, password: tenant.password, point: tenant.point});
             tenant.setID(result.insertId);

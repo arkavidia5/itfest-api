@@ -8,7 +8,7 @@ let givePoint = async function (req, res, next) {
         if (!point || point % 25 !== 0 || point > 250)
             throw new AppError(400, 'wrong input for point');
         let tenant = await Tenant.Repository.fetchOne({name: tenant_name});
-        let user = await User.Repository.fetchOne({id: user_id});
+        let user = await User.Repository.fetchOne({id: parseInt(user_id)});
         if (!user || !tenant)
             throw new AppError(400, 'tenant or user not found');
         if (!tenant.reducePoint(point))
