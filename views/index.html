@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://static.arkavidia.id/5/fonts/FuturaBT/style.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+
+<div class="main">
+		<div class="container-main">
+			<div class="wrap-main">
+
+                <div>
+                    <h1 class="futura-bt bold">Menu</h1>
+                    <!--Size dropdown menu-->
+                    <select id="menu_option" class="row">
+                            <option value="user">User</option>
+                            <option value="tenant">Tenant</option>
+                            <option value="item">Item</option>
+                            <option value="transaction">Transaction</option>
+                    </select>
+                </div>
+                    
+                <div class="row selected">
+                    <!--Size dropdown content-->
+                        <div id="user" class="menu_selected">
+                            user
+                        </div>
+                        <div id="tenant" class="menu_selected">
+                            tenant
+                        </div>
+                        <div id="item" class="menu_selected">
+                            item
+                        </div>
+                        <div id="transaction" class="menu_selected">
+                            transaction
+                        </div>
+                </div>
+                
+            </div>
+		</div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="index.js"></script> 
+</body>
+</html>
