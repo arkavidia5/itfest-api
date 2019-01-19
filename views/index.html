@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://static.arkavidia.id/5/fonts/FuturaBT/style.css">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
 </head>
 <body>
+    <div class="topnav">
+        <a class="active" href="#">User</a>
+        <a href="tenant.html">Tenant</a>
+        <a href="item.html">Item</a>
+        <a href="transaction.html">Transaction</a>
+      </div>
 
 <div class="main">
     <div class="container-main">
         <div class="wrap-main">
 
             <div class="content">
-                <h1 class="futura-bt bold">Menu</h1>
+                <h1 class="futura-bt bold">User</h1>
                 <div class="menu">
-                    <!--Size dropdown menu-->
-                    <select id="menu_option" class="row">
-                            <option value="user">User</option>
-                            <option value="tenant">Tenant</option>
-                            <option value="item">Item</option>
-                            <option value="transaction">Transaction</option>
-                    </select>
-                    <!--Size dropdown content-->
-                    <div id="user" class="menu_selected">
-                        user
+                    <div id="user">
                         <!-- TABEL USER -->
                         <table>
                             <tr>
                               <th>User ID</th>
-                              <th>Name</th> 
-                              <th>Password</th>
+                              <th>Point</th> 
                             </tr>
                             <tr>
                               <td>2321321</td>
-                              <td>Smith</td> 
-                              <td>test</td>
+                              <td>100</td> 
                             </tr>
                             <tr>
                               <td>2123234</td>
-                              <td>Jackson</td> 
-                              <td>test</td>
+                              <td>200</td> 
                             </tr>
                         </table>
                     </div>
-                    <div id="tenant" class="menu_selected">
-                        tenant
-                    </div>
-                    <div id="item" class="menu_selected">
-                        item
-                    </div>
-                    <div id="transaction" class="menu_selected">
-                        transaction
-                    </div>
+                </div>
+
+                <form action="" class="field-form">
+                    <label for="number">Generate user</label>
+                    <input type="text" name="number" autocomplete="off">
+                    <br>
+                </form>
+                
+                <div>
+                    <button id="submit-button" type="submit">Generate</button>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="index.js"></script> 
 </body>
 </html>
