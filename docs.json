@@ -1,7 +1,7 @@
 {
   "routes": [
     {
-      "uri": "/login",
+      "uri": "/admin/login",
       "method": "POST",
       "header": {
         "content-type": "application/json"
@@ -95,6 +95,14 @@
       }
     },
     {
+      "uri": "/tenant/all",
+      "method": "GET",
+      "response": {
+        "message": "[{name, detail_name, point}]",
+        "status_code": 200
+      }
+    },
+    {
       "uri": "/item",
       "method": "POST",
       "header": {
@@ -108,15 +116,47 @@
         "stock": "integer"
       },
       "response": {
-        "message": "OK",
+        "message": "{id, name, price, tenant, stock, max_stock}",
         "status_code": 201
       }
     },
     {
-      "uri": "/item",
+      "uri": "/item/all",
       "method": "GET",
       "response": {
-        "message": "[{name, price, tenant, stock, max_stock}]",
+        "message": "[{id, name, price, tenant, stock, max_stock}]",
+        "status_code": 200
+      }
+    },
+    {
+      "uri": "/item/add",
+      "method": "POST",
+      "header": {
+        "authorization": "Bearer <Admin JWT>",
+        "content-type": "application/json"
+      },
+      "body": {
+        "item_id": "string",
+        "addition": "integer"
+      },
+      "response": {
+        "message": "{id, name, price, tenant, stock, max_stock}",
+        "status_code": 200
+      }
+    },
+    {
+      "uri": "/item/reduce",
+      "method": "POST",
+      "header": {
+        "authorization": "Bearer <Admin JWT>",
+        "content-type": "application/json"
+      },
+      "body": {
+        "item_id": "string",
+        "reduction": "integer"
+      },
+      "response": {
+        "message": "{id, name, price, tenant, stock, max_stock}",
         "status_code": 200
       }
     },
@@ -156,6 +196,14 @@
     },
     {
       "uri": "/transaction/user/:id",
+      "method": "GET",
+      "response": {
+        "message": "<list of transaction>",
+        "status_code": 200
+      }
+    },
+    {
+      "uri": "/transaction/all",
       "method": "GET",
       "response": {
         "message": "<list of transaction>",

@@ -62,6 +62,15 @@ class PointTransactionRepository {
         return txs;
     }
 
+    static async fetchAll() {
+        let docs = await db.collection('point_transaction').find().toArray();
+        let txs = [];
+        for (let doc of docs) {
+            txs.push(new PointTransaction(doc.tenant, doc.user_id, doc.point, doc.created_at, doc._id));
+        }
+        return txs;
+    }
+
 }
 
 module.exports = {

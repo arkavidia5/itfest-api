@@ -1,5 +1,6 @@
 const db = require('../database').getDB();
 const AppError = require('../AppError');
+const mongo = require('mongodb');
 
 class Item {
 
@@ -27,6 +28,7 @@ class Item {
 
     getDetail() {
         return {
+            id: this.id,
             name: this.name,
             price: this.price,
             tenant: this.tenant,
@@ -77,6 +79,11 @@ class ItemRepository {
             items.push(new Item(doc.name, doc.price, doc.tenant, doc.stock, doc.max_stock, doc._id));
         }
         return items;
+    }
+
+    static async updateStock(item) {
+        await db.collection('item')
+            .updateOne({_id: new mongo.ObjectID(item.id)}, {$set: {stock: item.stock, max_stock: item.max_stock}});
     }
 }
 

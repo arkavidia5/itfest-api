@@ -1,14 +1,16 @@
 let express = require("express");
 let route = express.Router();
+let routeAPI = express.Router();
 
-route.use("/user", require("./UserRoute"));
-route.use("/login", require("./AdminRoute"));
-route.use("/tenant", require("./TenantRoute"));
-route.use("/item", require("./ItemRoute"));
-route.use("/transaction", require("./TransactionRoute"));
-route.get("/docs", async function(req, res) {
+routeAPI.use("/user", require("./UserRoute"));
+routeAPI.use("/admin", require("./AdminRoute"));
+routeAPI.use("/tenant", require("./TenantRoute"));
+routeAPI.use("/item", require("./ItemRoute"));
+routeAPI.use("/transaction", require("./TransactionRoute"));
+routeAPI.get("/docs", async function(req, res) {
   let info = require("../docs");
   res.json(info);
 });
+route.use("/api", routeAPI);
 
 module.exports = route;

@@ -67,6 +67,15 @@ class ItemTransactionRepository {
         return txs;
     }
 
+    static async fetchAll() {
+        let docs = await db.collection('item_transaction').find().toArray();
+        let txs = [];
+        for (let doc of docs) {
+            txs.push(new ItemTransaction(doc.item, doc.tenant, doc.user_id, doc.quantity, doc.total_price, doc.created_at, doc._id));
+        }
+        return txs;
+    }
+
 }
 
 module.exports = {

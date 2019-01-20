@@ -27,7 +27,6 @@ class Tenant {
 
     getDetail() {
         return {
-            id: this.id,
             name: this.name,
             detail_name: this.detail_name,
             point: this.point
@@ -65,6 +64,15 @@ class TenantRepository {
         let docs = await db.collection('tenant').find(condition).toArray();
         if (docs.length === 0) return null;
         return new Tenant(docs[0].name, docs[0].detail_name, docs[0].point, docs[0].password, docs[0]._id);
+    }
+
+    static async fetchAll() {
+        let docs = await db.collection('tenant').find().toArray();
+        let tenants = [];
+        for (let doc of docs) {
+            tenants.push(new Tenant(doc.name, doc.detail_name, doc.point, doc.password, doc._id));
+        }
+        return tenants;
     }
 
 }

@@ -14,7 +14,7 @@ server.use(logger('dev'));
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 server.use(cookieParser());
-server.use(process.env.NODE_ENV === "prod" ? "" : "/test", routes);
+server.use(routes);
 server.use(async function(err, req, res, next) {
   if (err instanceof AppError) {
     res.status(err.statusCode).json(err.message);
@@ -29,10 +29,5 @@ server.use(async function(err, req, res, next) {
 server.get("/", async function(req, res) {
   res.send("OK");
 });
-
-server.get("/login", async function(req, res) {
-  res.render("login.ejs");
-});
-//Aku coba di AdminRouter g bisa kak, tapi disini bisa.
 
 module.exports = server;
