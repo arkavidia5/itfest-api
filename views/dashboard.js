@@ -5,10 +5,7 @@ $('document').ready(function() {
             $("#table-tenant").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
         }
         else if ($('#item').length == 1) {
-            $("#table-item").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
-        }
-        else if ($('#transaction').length == 1) {
-            $("#table-transaction").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
+            $("#table-item").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
         }
 
 
