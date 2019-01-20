@@ -25,12 +25,13 @@ let redeemItem = async function (req, res, next) {
     try {
         let {item_id, user_id, quantity} = req.body;
         let item = await Item.Repository.fetchOne({_id: new mongo.ObjectID(item_id)});
-        let user = await User.Repository.fetchOne({id: user_id});
-        if (!user || !item)
-            throw new AppError(400, 'item or user not found');
-        if (!item.buyItem(quantity))
+        let user = await User.Repository.fetchOne({id: parseInt(user_id)});
+        if (!user || !item) {
+	    throw new AppError(400, 'item or user not found');
+        }
+	let totalPrice = item.buyItem(quantity);
+	if (!totalPrice)
             throw new AppError(400, 'stock is less than quantity');
-        let totalPrice = quantity * item.price;
         if (!user.reducePoint(totalPrice))
             throw new AppError(400, `user ${user.id} doesn't have enough point`);
         let it = await ItemTransaction.Repository.create(item, user, quantity, totalPrice);

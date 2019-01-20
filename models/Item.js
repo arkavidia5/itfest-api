@@ -16,12 +16,12 @@ class Item {
         this.id = id;
     }
 
-    buyItem(total) {
-        if (this.stock - total < 0) {
-            return 0;
+    buyItem(qty) {
+        if (this.stock - qty < 0) {
+            return false;
         } else {
-            this.stock -= total;
-            return this.price * total;
+            this.stock -= qty;
+            return this.price * qty;
         }
     }
 

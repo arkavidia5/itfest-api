@@ -4,9 +4,11 @@ const cookieParser = require('cookie-parser');
 
 const routes = require('./routes');
 const AppError = require('./AppError');
+const cors = require('cors');
 
 let server = express();
 
+server.use(cors());
 server.set('view engine', 'ejs');
 server.use(logger('dev'));
 server.use(express.json());
