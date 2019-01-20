@@ -1,6 +1,6 @@
-const express = require('express');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const logger = require("morgan");
+const cookieParser = require("cookie-parser");
 
 const routes = require('./routes');
 const AppError = require('./AppError');
@@ -14,18 +14,25 @@ server.use(logger('dev'));
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 server.use(cookieParser());
-server.use(process.env.NODE_ENV === 'prod' ? "" : "/test", routes);
-server.use(async function (err, req, res, next) {
-    if (err instanceof AppError) {
-        res.status(err.statusCode).json(err.message);
-    } else {
-        console.log(err);
-        res.status(500).json(process.env.DEBUG ? err.message : 'Internal Server Error');
-    }
+server.use(process.env.NODE_ENV === "prod" ? "" : "/test", routes);
+server.use(async function(err, req, res, next) {
+  if (err instanceof AppError) {
+    res.status(err.statusCode).json(err.message);
+  } else {
+    console.log(err);
+    res
+      .status(500)
+      .json(process.env.DEBUG ? err.message : "Internal Server Error");
+  }
 });
 
-server.get("/", async function (req, res) {
-    res.send('OK');
+server.get("/", async function(req, res) {
+  res.send("OK");
 });
+
+server.get("/login", async function(req, res) {
+  res.render("login.ejs");
+});
+//Aku coba di AdminRouter g bisa kak, tapi disini bisa.
 
 module.exports = server;
