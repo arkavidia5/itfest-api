@@ -1,0 +1,22 @@
+<div class="topnav">
+    <% if (title === "User") {%>
+        <a href="#" class="active">User</a>
+    <% } else {%>
+        <a href="/dashboard/user">User</a>
+    <% }%>
+    <% if (title === "Tenant") {%>
+        <a href="#" class="active">Tenant</a>
+    <% } else {%>
+        <a href="/dashboard/tenant">Tenant</a>
+    <% }%>
+    <% if (title === "Item") {%>
+        <a href="#" class="active">Item</a>
+    <% } else {%>
+        <a href="/dashboard/item">Item</a>
+    <% }%>
+    <% if (title === "Transaction") {%>
+        <a href="#" class="active">Transaction</a>
+    <% } else {%>
+        <a href="/dashboard/transaction">Transaction</a>
+    <% }%>
+</div>

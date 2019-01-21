@@ -3,5 +3,6 @@ module.exports = {
     Item: require('./ItemController'),
     Tenant: require('./TenantController'),
     Transaction: require('./TransactionController'),
-    Admin: require('./AdminController')
+    Admin: require('./AdminController'),
+    Dashboard: require('./DashboardController')
 };

@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title><%= title %></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://static.arkavidia.id/5/fonts/FuturaBT/style.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/navbar.css">
 </head>
 <body>
-    <div class="topnav">
-        <a href="index.html">User</a>
-        <a href="tenant.html">Tenant</a>
-        <a href="item.html">Item</a>
-        <a class="active" href="transaction.html">Transaction</a>
-      </div>
 
-<div class="main">
+    <%- include header.ejs%>
+    <div class="main">
     <div class="container-main">
         <div class="wrap-main">
 
@@ -27,17 +23,17 @@
                             <thead class="thead-color">
                                 <tr>
                                     <th>Transaction</th>
-                                    <th>Hehehehhe ._.</th> 
+                                    <th>Hehehehhe ._.</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>2321321</td>
-                                    <td>100</td> 
+                                    <td>100</td>
                                 </tr>
                                 <tr>
                                     <td>2123234</td>
-                                    <td>200</td> 
+                                    <td>200</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -48,7 +44,6 @@
         </div>
     </div>
 </div>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="dashboard.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>

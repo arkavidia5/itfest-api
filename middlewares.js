@@ -2,15 +2,40 @@ const jwt = require('jsonwebtoken');
 let mongo = require('mongodb');
 
 const checkAuthHeader = function(req) {
-    if (!req.headers['authorization'])
-        return false;
     let auth = req.headers['authorization'];
+    if (!auth) return false;
     let token = auth.split(" ")[1];
     try {
         return jwt.verify(token, process.env.JWT_KEY);
     } catch (e) {
         return false;
     }
+};
+
+const checkAuthSession = function (req) {
+    if (!req.session.auth)
+        return false;
+    try {
+        return jwt.verify(req.session.auth, process.env.JWT_KEY);
+    } catch (e) {
+        return false;
+    }
+};
+
+const redirectIfNotAdmin = async function (req, res, next) {
+    let payload = checkAuthSession(req);
+    if (!payload || payload.type !== 'admin') {
+        req.session.destroy();
+        return res.redirect(302, '/dashboard/login');
+    }
+    let Admin = require('./models').Admin.Repository;
+    let admin = await Admin.fetchOne({_id: new mongo.ObjectID(payload.id)});
+    if (admin === null) {
+        req.session.destroy();
+        return res.redirect(302, '/dashboard/login');
+    }
+    req.admin = admin;
+    next();
 };
 
 const adminMiddleware = async function(req, res, next) {
@@ -61,4 +86,4 @@ const jsonMiddleware = async (req, res, next) => {
     next();
 };
 
-module.exports = {adminMiddleware, jsonMiddleware, tenantMiddleware, userMiddleware};
+module.exports = {adminMiddleware, jsonMiddleware, tenantMiddleware, userMiddleware, redirectIfNotAdmin};
