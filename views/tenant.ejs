@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://static.arkavidia.id/5/fonts/FuturaBT/style.css">
+    <link rel="stylesheet" href="cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <link rel="stylesheet" type="text/css" href="/static/navbar.css">
 </head>
@@ -23,7 +24,8 @@
                             <table id="table-tenant" class="table data-table table-hover">
                                 <thead class="thead-color">
                                 <tr>
-                                    <th>User ID</th>
+                                    <th>Name</th>
+                                    <th>Detail Name</th>
                                     <th>Point</th>
                                 </tr>
                                 </thead>
@@ -31,10 +33,37 @@
                                 <tr>
                                     <td>2321321</td>
                                     <td>100</td>
+                                    <td>aaaa</td>
                                 </tr>
                                 <tr>
                                     <td>2123234</td>
                                     <td>200</td>
+                                    <td>bbb</td>
+                                </tr>
+                                <tr>
+                                    <td>2321321</td>
+                                    <td>100</td>
+                                    <td>aaaa</td>
+                                </tr>
+                                <tr>
+                                    <td>2123234</td>
+                                    <td>200</td>
+                                    <td>bbb</td>
+                                </tr>
+                                <tr>
+                                    <td>2321321</td>
+                                    <td>100</td>
+                                    <td>aaaa</td>
+                                </tr>
+                                <tr>
+                                    <td>2123234</td>
+                                    <td>200</td>
+                                    <td>bbb</td>
+                                </tr>
+                                <tr>
+                                    <td>2321321</td>
+                                    <td>100</td>
+                                    <td>aaaa</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -50,5 +79,10 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- #region datatables files -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <!-- #endregion -->
+    <script src="/static/tables.js"></script>
 </body>
 </html>
