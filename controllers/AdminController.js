@@ -8,9 +8,9 @@ let login = async function (req, res, next) {
         if (admin && await admin.verifyPassword(password)) {
             req.token = jwt.sign({'id': admin.id, 'username': admin.username, 'type': 'admin'},
                 process.env.JWT_KEY, {expiresIn: process.env.EXPIRES_IN});
-            res.validated = true;
+            req.validated = true;
         } else {
-            res.validated = false;
+            req.validated = false;
         }
         next();
     } catch (e) {
