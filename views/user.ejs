@@ -27,15 +27,7 @@
                                         <th>Point</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>2321321</td>
-                                        <td>100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2123234</td>
-                                        <td>200</td>
-                                    </tr>
+                                <tbody id="tbody-user">
                                 </tbody>
                             </table>
                         </div>
@@ -43,7 +35,7 @@
 
                     <form action="">
                         <label for="number">Generate user</label>
-                        <input type="text" name="number" autocomplete="off">
+                        <input id="user-count" type="text" name="number" autocomplete="off">
                         <br>
                     </form>
 
@@ -60,5 +52,6 @@
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <!-- #endregion -->
     <script src="/static/tables.js"></script>
+    <script src="/static/user.js"></script>
 </body>
 </html>
