@@ -2,7 +2,7 @@ let dataSet = [];
 let table;
 
 $(document).ready( function () {
-    table = $('#table-user').DataTable({
+    table = $('#table-transaction').DataTable({
         "pagingType": "full_numbers",
         "data": dataSet,
         "columnDefs": [
