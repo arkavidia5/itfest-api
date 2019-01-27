@@ -2,10 +2,10 @@ $('document').ready(function() {
     $('#new-button').click(function() {
         // $('#new-button').remove();
         if ($('#tenant').length === 1) {
-            $("#table-tenant").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
+            $("#table-tenant").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
         }
-        else if ($('#item').length === 1) {
-            $("#table-item").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
+        else if ($('#tenant').length === 1) {
+            $("#table-item").append('<tr class="new-record"><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td><td><input type="text" class="add-txtbox" value="" /></td></tr>');
         }
 
 
