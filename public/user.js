@@ -1,4 +1,19 @@
+let dataSet = [];
+let table;
+
 $(document).ready( function () {
+    table = $('#table-user').DataTable({
+        "pagingType": "full_numbers",
+        "data": dataSet,
+        "columns": [
+            {title: "User ID"},
+            {title: "Point"}
+        ],
+        "columnDefs": [
+            { "width": "200px", "targets": 0},
+            { "width": "100px", "targets": 1}
+        ]
+    });
     fetchData();
     $("#submit-button").click(postData);
 });
@@ -9,7 +24,13 @@ function fetchData() {
             return response.json();
         })
         .then((data) => {
-            showTable(data);
+            dataSet = [];
+            for (let obj of data) {
+                dataSet.push([obj.id, obj.point]);
+            }
+            table.clear().draw();
+            table.rows.add(dataSet);
+            table.columns.adjust().draw();
         })
         .catch(err => console.log(err));
 }
