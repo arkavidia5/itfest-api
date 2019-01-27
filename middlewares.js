@@ -39,7 +39,7 @@ const redirectIfNotAdmin = async function (req, res, next) {
 };
 
 const adminMiddleware = async function(req, res, next) {
-    let payload = checkAuthHeader(req);
+    let payload = checkAuthHeader(req) || checkAuthSession(req);
     if (!payload || payload.type !== 'admin') {
         return res.status(401).json('not authorized');
     }
