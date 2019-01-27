@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://static.arkavidia.id/5/fonts/FuturaBT/style.css">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <link rel="stylesheet" type="text/css" href="/static/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/static/modal.css">
 </head>
 <body>
     <%- include header.ejs%>
@@ -36,8 +37,139 @@
                     </div>
 
                     <div class="button">
-                        <button id="new-button" class="add-button">New</button>
+                        <button id="new-button" class="menu-button">New</button>
+                        <button id="edit-button" class="menu-button">Edit</button>
                     </div>
+                </div>
+
+                <!-- The EDIT Modal -->
+                <div id="editModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                    <span class="close-edit">&times;</span>
+
+                    <h1 class="futura-bt bold">Edit Data</h1>
+                    <form class="content display-form" action="">
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">ID</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-id" type="text" name="edit-id" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Name</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-name" type="text" name="edit-name" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Price</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-price" type="text" name="edit-price" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Tenant</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-tenant" type="text" name="edit-tenant" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Stock</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-stock" type="text" name="edit-stock" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Max Stock</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-max-stock" type="text" name="edit-max-stock" autocomplete="off">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div>
+                        <button id="change-button" type="submit">Change</button>
+                    </div>
+                    
+                    </div>     
+                </div>
+
+                <!-- The ADD Modal -->
+                <div id="addModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                    <span class="close-add">&times;</span>
+
+                    <h1 class="futura-bt bold">Add Data</h1>
+                    <form class="content display-form" action="">
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">ID</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-id" type="text" name="add-id" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Name</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-name" type="text" name="add-name" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Price</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-price" type="text" name="add-price" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Tenant</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-tenant" type="text" name="add-tenant" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Stock</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-stock" type="text" name="add-stock" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label for="number">Max Stock</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-max-stock" type="text" name="add-max-stock" autocomplete="off">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div>
+                        <button id="save-button" type="submit">Save</button>
+                    </div>
+                    
+                    </div>     
                 </div>
 
             </div>

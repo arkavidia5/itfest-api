@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <link rel="stylesheet" type="text/css" href="/static/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/static/modal.css">
 </head>
 <body>
     <%- include header.ejs %>
@@ -36,8 +37,91 @@
                     </div>
 
                     <div class="button">
-                        <button id="new-button" class="add-button">New</button>
+                            <button id="new-button" class="menu-button">New</button>
+                            <button id="edit-button" class="menu-button">Edit</button>
                     </div>
+                </div>
+
+                <!-- The EDIT Modal -->
+                <div id="editModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                    <span class="close-edit">&times;</span>
+
+                    <h1 class="futura-bt bold">Edit Data</h1>
+                    <form class="content display-form" action="">
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-name" type="text" name="edit-name" autocomplete="off" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label>Detail Name</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-detail" type="text" name="edit-detail" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label>Point</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="edit-point" type="text" name="edit-point" autocomplete="off">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div>
+                        <button id="change-button" type="submit">Change</button>
+                    </div>
+                    
+                    </div>     
+                </div>
+
+                <!-- The ADD Modal -->
+                <div id="addModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                    <span class="close-add">&times;</span>
+
+                    <h1 class="futura-bt bold">Add Data</h1>
+                    <form class="content display-form" action="">
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-name" type="text" name="add-name" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label>Name Detail</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-detail" type="text" name="add-detail" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group display-field">
+                            <div class="col-2">
+                                <label>Point</label>
+                            </div>
+                            <div class="col-3">
+                                <input id="add-point" type="text" name="add-point" autocomplete="off">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div>
+                        <button id="save-button" type="submit">Save</button>
+                    </div>
+                    
+                    </div>     
                 </div>
 
             </div>
