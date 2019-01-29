@@ -53,7 +53,7 @@ class TenantRepository {
             throw new AppError(400, `${tenant.name} already created`);
         try {
             let result = await db.collection('tenant').insertOne({name: tenant.name, detail_name: tenant.detail_name, password: tenant.password, point: tenant.point});
-            tenant.setID(result.insertId);
+            tenant.setID(result.insertedId.toString());
         } catch (e) {
             throw new AppError(500, e.message);
         }

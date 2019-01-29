@@ -35,20 +35,6 @@ function fetchData() {
         .catch(err => console.log(err));
 }
 
-function showTable(data) {
-    $("#tbody-user").empty();
-    for (let obj of data) {
-        let tr = document.createElement("tr");
-        let td_1 = document.createElement("td");
-        let td_2 = document.createElement("td");
-        tr.appendChild(td_1);
-        tr.appendChild(td_2);
-        td_1.appendChild(document.createTextNode(obj.id));
-        td_2.appendChild(document.createTextNode(obj.point));
-        $("#tbody-user").append(tr);
-    }
-}
-
 function postData() {
     let count = parseInt($("#user-count").val());
     console.log(count);
@@ -64,7 +50,7 @@ function postData() {
             if (response.ok) {
                 return response.json();
             }
-            throw new Response(`response ${response.ok}`)
+            throw new Error(`response ${response.ok}`)
         }).then((data) => {
             fetchData();
         }).catch((err) => {console.log(err)});

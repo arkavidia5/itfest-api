@@ -1,23 +1,23 @@
 let dataSet = [];
 let table;
-var editStatus;
+let editStatus;
 
 $(document).ready( function () {
     table = $('#table-item').DataTable({
         "pagingType": "full_numbers",
         "data": dataSet,
         "columnDefs": [
-            { "width": "100px", "targets": 0},
-            { "width": "189px", "targets": 1},
+            { "width": "300px", "targets": 0},
+            { "width": "250px", "targets": 1},
             { "width": "180px", "targets": 2},
-            { "width": "180px", "targets": 3},
-            { "width": "180px", "targets": 4}
+            { "width": "150px", "targets": 3},
+            { "width": "150px", "targets": 4}
         ]
     });
     fetchData();
 
     $('#new-button').click(function() {
-        var editButton = document.getElementById("edit-button");
+        let editButton = document.getElementById("edit-button");
         editButton.style.display = "none";
         newForm();
     });
@@ -26,15 +26,15 @@ $(document).ready( function () {
         console.log(dataSet);
         if (dataSet.length > 0) {
             editStatus = 1;
-            var addButton = document.getElementById("new-button");
+            let addButton = document.getElementById("new-button");
             addButton.style.display = "none";
-            var table = $('#table-item').DataTable();
+            let table = $('#table-item').DataTable();
             $('#table-item').unbind("click");
             $('#table-item').on('click', 'tbody tr', function () {
-                if (editStatus == 1) {
+                if (editStatus === 1) {
                     editForm(table.row(this));
                 }
-            });   
+            });
         }
         else {
             alert('Cannot edit rows. Empty table');
@@ -61,55 +61,70 @@ function fetchData() {
 }
 
 function newForm() {
-    console.log('yes');
     // Get the modal
-    var modal = $('#addModal')[0];
-
+    let modal = $('#addModal')[0];
     // Get the <span> element that closes the modal
-    var span = $(".close-add")[0];
-
+    let span = $(".close-add")[0];
     // When the user clicks the rows, open the modal
     $('#addModal').trigger("reset");
     modal.style.display = "block";
-
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         resetAddMode();
         modal.style.display = "none";
-    }
-
+    };
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             resetAddMode();
             modal.style.display = "none";
         }
-    }
-    
-    var save = $('#save-button')[0];
+    };
+
+    let save = $('#save-button')[0];
     save.onclick = function(event) {
         modal.style.display = "none";
         // send query save value
         ///////////////////////
         // JOSAL QUERY ! //
-        console.log('saved');
-        // isi new data
-        var newdata = [$('#add-id').val(), $('#add-name').val(), $('#add-price').val(), $('#add-tenant').val(), $('#add-stock').val(), $('#add-max-stock').val()];
-        dataSet.push(newdata);
-        var table = $('#table-item').DataTable();
-        table.row.add(newdata).draw();
-        resetAddMode();
+        let name = $('#add-name').val(),
+            price = $('#add-price').val(),
+            tenant = $('#add-tenant').val(),
+            stock = $('#add-stock').val();
+
+        if (name.length < 5 && parseInt(price) <= 0 && tenant.length < 5 && parseInt(stock) <= 0) {
+            return;
+        }
+        fetch("/api/item", {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            credential: "same-origin",
+            body: JSON.stringify({name, price, tenant, stock})
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(`response ${response.ok}`)
+        }).then((data) => {
+            let newdata = [data.id, name, price, tenant, stock, data.max_stock];
+            dataSet.push(newdata);
+            let table = $('#table-item').DataTable();
+            table.row.add(newdata).draw();
+            resetAddMode();
+        }).catch((err) => {
+            alert(err.message);
+        });
     }
 }
 
 function editForm(row) {
-    var data = row.data();
+    let data = row.data();
     console.log('yes');
     // Get the modal
-    var modal = $('#editModal')[0];
+    let modal = $('#editModal')[0];
 
     // Get the <span> element that closes the modal
-    var span = $(".close-edit")[0];
+    let span = $(".close-edit")[0];
 
     // When the user clicks the rows, open the modal
     modal.style.display = "block";
@@ -133,8 +148,8 @@ function editForm(row) {
             modal.style.display = "none";
         }
     }
-    
-    var change = $('#change-button')[0];
+
+    let change = $('#change-button')[0];
     change.onclick = function(event) {
         modal.style.display = "none";
         // send query save value
@@ -142,7 +157,7 @@ function editForm(row) {
         // JOSAL QUERY ! //
         console.log('saved');
         // isi new data
-        var newdata = [data[0], $('#edit-name').val(), $('#edit-price').val(), $('#edit-tenant').val(), $('#edit-stock').val(), $('#edit-max-stock').val()];
+        let newdata = [data[0], $('#edit-name').val(), $('#edit-price').val(), $('#edit-tenant').val(), $('#edit-stock').val(), $('#edit-max-stock').val()];
         row.data(newdata).draw();
         resetEditMode();
     }
@@ -150,14 +165,14 @@ function editForm(row) {
 
 function resetEditMode() {
     console.log('reset');
-    var addButton = $("#new-button")[0];
+    let addButton = $("#new-button")[0];
     addButton.style.display = "inline";
     editStatus = 0;
 }
 
 function resetAddMode() {
     console.log('reset');
-    var editButton = $("#edit-button")[0];
+    let editButton = $("#edit-button")[0];
     editButton.style.display = "inline";
     $('#add-id').val('');
     $('#add-name').val('');

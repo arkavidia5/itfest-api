@@ -49,7 +49,8 @@ class ItemRepository {
         let item = new Item(name, price, tenant, stock, stock);
         try {
             let result = await db.collection('item').insertOne(item.getDetail());
-            item.setID(result.insertId);
+            let insertedId = result.insertedId.toString();
+            item.setID(insertedId);
         } catch (e) {
             throw new AppError(500, e.message);
         }

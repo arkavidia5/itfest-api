@@ -42,7 +42,8 @@ class ItemTransactionRepository {
         try {
             let result = await db.collection('item_transaction')
                 .insertOne(itemTransaction.getDetail(), opts);
-            itemTransaction.setID(result.insertId);
+            let insertedId = result.insertedId.toString();
+            itemTransaction.setID(insertedId);
             await db.collection('user')
                 .updateOne({id: user.id}, {$set: {point: user.point}}, opts);
             await db.collection('item')

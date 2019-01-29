@@ -34,7 +34,7 @@ class AdminRepository {
                 "username": admin.username,
                 "password": admin.password
             });
-            admin.setId(result.insertedId);
+            admin.setId(result.insertedId.toString());
         } catch (e) {
             throw new AppError(500, e.message);
         }

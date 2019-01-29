@@ -37,7 +37,7 @@ class PointTransactionRepository {
         try {
             let result = await db.collection('point_transaction')
                 .insertOne(pointTransaction.getDetail(), opts);
-            pointTransaction.setID(result.insertId);
+            pointTransaction.setID(result.insertedId.toString());
             await db.collection('tenant')
                 .updateOne({_id: tenant.id}, {$set: {point: tenant.point}}, opts);
             await db.collection('user')
