@@ -1,9 +1,14 @@
 const jwt = require('jsonwebtoken');
 const Tenant = require('../models').Tenant;
+const AppError = require('../AppError');
 
 let createTenant = async function(req, res, next) {
     try {
         let {name, detail_name, password, point} = req.body;
+        point = parseInt(point) || 0;
+        if (point === 0) {
+            return next(new AppError(400, "wrong point"));
+        }
         await Tenant.Repository.create(name, detail_name, password, point);
         next();
     } catch (e) {

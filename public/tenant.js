@@ -20,24 +20,24 @@ $(document).ready( function () {
         newForm();
     });
 
-    $('#edit-button').click(function() {
-        if (dataSet.length > 0) {
-            editStatus = 1;
-            let addButton = document.getElementById("new-button");
-            addButton.style.display = "none";
-            let table = $('#table-tenant').DataTable();
-            $('#table-tenant').unbind("click");
-            $('#table-tenant').on('click', 'tbody tr', function () {
-                if (editStatus === 1) {
-                    editForm(table.row(this));
-                }
-            });
-        }
-        else {
-            alert('Cannot edit rows. Empty table');
-            $('#edit-button').unbind("click");
-        }
-    });
+    // $('#edit-button').click(function() {
+    //     if (dataSet.length > 0) {
+    //         editStatus = 1;
+    //         let addButton = document.getElementById("new-button");
+    //         addButton.style.display = "none";
+    //         let table = $('#table-tenant').DataTable();
+    //         $('#table-tenant').unbind("click");
+    //         $('#table-tenant').on('click', 'tbody tr', function () {
+    //             if (editStatus === 1) {
+    //                 editForm(table.row(this));
+    //             }
+    //         });
+    //     }
+    //     else {
+    //         alert('Cannot edit rows. Empty table');
+    //         $('#edit-button').unbind("click");
+    //     }
+    // });
 });
 
 function fetchData() {

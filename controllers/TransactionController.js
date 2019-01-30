@@ -5,10 +5,12 @@ const mongo = require('mongodb');
 let givePoint = async function (req, res, next) {
     try {
         let {tenant_name, user_id, point} = req.body;
-        if (!point || point % 25 !== 0 || point > 250)
-            return next(new AppError(400, 'wrong input for point'));
+        point = parseInt(point) || 0;
+        user_id = parseInt(user_id) || 0;
+        if (!user_id || !point || point % 25 !== 0 || point > 250)
+            return next(new AppError(400, 'wrong input for point or user_id'));
         let tenant = await Tenant.Repository.fetchOne({name: tenant_name});
-        let user = await User.Repository.fetchOne({id: parseInt(user_id)});
+        let user = await User.Repository.fetchOne({id: user_id});
         if (!user || !tenant)
             return next(new AppError(400, 'tenant or user not found'));
         if (!tenant.reducePoint(point))
@@ -24,8 +26,13 @@ let givePoint = async function (req, res, next) {
 let redeemItem = async function (req, res, next) {
     try {
         let {item_id, user_id, quantity} = req.body;
+        quantity = parseInt(quantity) || 0;
+        user_id = parseInt(user_id) || 0;
+        if (!quantity || !user_id) {
+            return next(new AppError(400, 'wrong quantity or user_id'));
+        }
         let item = await Item.Repository.fetchOne({_id: new mongo.ObjectID(item_id)});
-        let user = await User.Repository.fetchOne({id: parseInt(user_id)});
+        let user = await User.Repository.fetchOne({id: user_id});
         if (!user || !item) {
 	        return next(new AppError(400, 'item or user not found'));
         }

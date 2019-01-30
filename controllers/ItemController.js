@@ -7,10 +7,17 @@ let createItem = async function (req, res, next) {
         let {name, price, tenant, stock} = req.body;
         if (await Tenant.Repository.fetchOne({name: tenant}) === null)
             return next(new AppError(400, 'tenant not found'));
-        req.item = await Item.Repository.create(name, price, tenant, stock);
+        let intPrice = parseInt(price) || 0;
+        let intStock = parseInt(stock) || 0;
+        if (intPrice === 0 || intStock === 0 || name === '') {
+            return next(new AppError(400, 'input error'));
+        }
+        if (await Tenant.Repository.fetchOne({name: name, tenant: tenant})) {
+            return next(new AppError(400, 'already created'));
+        }
+        req.item = await Item.Repository.create(name, intPrice, tenant, intStock);
         next();
     } catch (e) {
-        next(e);
     }
 };
 

@@ -49,53 +49,29 @@
                     <span class="close-edit">&times;</span>
 
                     <h1 class="futura-bt bold">Edit Data</h1>
+                    <div id="item-stock"></div>
+                    <div id="item-max-stock"></div>
                     <form class="content display-form" action="">
                         <div class="form-group display-field">
                             <div class="col-2">
-                                <label>Name</label>
+                                <label>Add stock</label>
                             </div>
                             <div class="col-3">
-                                <input id="edit-name" type="text" name="edit-name" autocomplete="off">
+                                <input id="add-istock" type="text" name="edit-name" autocomplete="off">
                             </div>
                         </div>
+                        <button id="add-button" style="margin-left: 10px" type="submit">Change</button>
+                        <br>
                         <div class="form-group display-field">
                             <div class="col-2">
-                                <label>Price</label>
+                                <label>Reduce Stock</label>
                             </div>
                             <div class="col-3">
-                                <input id="edit-price" type="text" name="edit-price" autocomplete="off">
+                                <input id="reduce-stock" type="text" name="edit-price" autocomplete="off">
                             </div>
                         </div>
-                        <div class="form-group display-field">
-                            <div class="col-2">
-                                <label>Tenant</label>
-                            </div>
-                            <div class="col-3">
-                                <input id="edit-tenant" type="text" name="edit-tenant" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="form-group display-field">
-                            <div class="col-2">
-                                <label>Stock</label>
-                            </div>
-                            <div class="col-3">
-                                <input id="edit-stock" type="text" name="edit-stock" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="form-group display-field">
-                            <div class="col-2">
-                                <label>Max Stock</label>
-                            </div>
-                            <div class="col-3">
-                                <input id="edit-max-stock" type="text" name="edit-max-stock" autocomplete="off">
-                            </div>
-                        </div>
+                        <button id="reduce-button" style="margin-left: 10px" type="submit">Change</button>
                     </form>
-
-                    <div>
-                        <button id="change-button" type="submit">Change</button>
-                    </div>
-
                     </div>
                 </div>
 
